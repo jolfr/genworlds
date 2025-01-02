@@ -8,7 +8,7 @@ from datetime import datetime
 class AbstractEvent(ABC, BaseModel):
     event_type: str
     description: str
-    summary: Optional[str]
+    summary: Optional[str] = None
     created_at: datetime = Field(default_factory=datetime.now)
     sender_id: str
-    target_id: Optional[str]
+    target_id: Optional[str] = None
