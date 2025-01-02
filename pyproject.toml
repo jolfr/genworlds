@@ -13,6 +13,7 @@ dependencies = [
     "fastapi>=0.88.0",
     "fastjsonschema>=2.16.3",
     "jsonschema>=4.17.3",
+    "langchain-community>=0.3.13",
     "langchain>=0.0.335",
     "openai>=0.28.0",
     "prompt-toolkit>=3.0.38",
@@ -37,5 +38,6 @@ packages = ["src/genworlds"]
 dev-dependencies = [
     "debugpy==1.6.2",
     "black==23.3.0",
+    "jupyter>=1.1.1",
     "pytest==7.4.0",
 ]
