@@ -4,20 +4,20 @@ from genworlds.events.abstracts.action import AbstractAction
 
 
 class AgentWantsUpdatedStateEvent(AbstractEvent):
-    event_type = "agent_wants_updated_state"
-    description = "Agent wants to update its state."
+    event_type : str = "agent_wants_updated_state"
+    description : str = "Agent wants to update its state."
     # that gives available_action_schemas, and available_entities
 
 
 class WorldSendsAvailableEntitiesEvent(AbstractEvent):
-    event_type = "world_sends_available_entities_event"
-    description = "Send available entities."
+    event_type : str = "world_sends_available_entities_event"
+    description : str = "Send available entities."
     available_entities: dict
 
 
 class WorldSendsAvailableEntities(AbstractAction):
     trigger_event_class = AgentWantsUpdatedStateEvent
-    description = "Send available entities."
+    description : str = "Send available entities."
 
     def __init__(self, host_object: AbstractObject):
         super().__init__(host_object=host_object)
@@ -34,8 +34,8 @@ class WorldSendsAvailableEntities(AbstractAction):
 
 
 class WorldSendsAvailableActionSchemasEvent(AbstractEvent):
-    event_type = "world_sends_available_action_schemas_event"
-    description = "The world sends the possible action schemas to all the agents."
+    event_type : str = "world_sends_available_action_schemas_event"
+    description : str = "The world sends the possible action schemas to all the agents."
     world_name: str
     world_description: str
     available_action_schemas: dict[str, str]
@@ -43,7 +43,7 @@ class WorldSendsAvailableActionSchemasEvent(AbstractEvent):
 
 class WorldSendsAvailableActionSchemas(AbstractAction):
     trigger_event_class = AgentWantsUpdatedStateEvent
-    description = "The world sends the possible action schemas to all the agents."
+    description : str = "The world sends the possible action schemas to all the agents."
 
     def __init__(self, host_object: AbstractObject):
         super().__init__(host_object=host_object)
@@ -77,6 +77,6 @@ class WorldSendsAvailableActionSchemas(AbstractAction):
 
 
 class UserSpeaksWithAgentEvent(AbstractEvent):
-    event_type = "user_speaks_with_agent_event"
-    description = "The user speaks with an agent."
+    event_type : str = "user_speaks_with_agent_event"
+    description : str = "The user speaks with an agent."
     message: str
