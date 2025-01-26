@@ -4,6 +4,7 @@ import json
 from typing import Any, Type, TypeVar, Generic, Tuple
 
 from genworlds.events.abstracts.event import AbstractEvent
+from genworlds.objects.abstracts.object import AbstractObject
 
 T = TypeVar("T", bound=AbstractEvent)
 
@@ -16,14 +17,13 @@ class AbstractAction(ABC, Generic[T]):
         self.host_object = host_object
 
     @property
-    def action_schema(self) -> Tuple(str):
+    def action_schema(self) -> Tuple[str]:
         """Returns the action schema as a string"""
         return (
             f"{self.host_object.id}:{self.__class__.__name__}",
-            f"{self.description}|{self.trigger_event_class.__fields__['event_type'].default}|"
-            + json.dumps(self.trigger_event_class.schema()),
+            f"{self.description}|{self.trigger_event_class.model_fields['event_type'].default}|"
+            + json.dumps(self.trigger_event_class.model_json_schema()),
         )
-        # f"{type(self.host_object).__name__}|\n{self.host_object.description}|\n"
 
     @abstractmethod
     def __call__(self, event: T, *args: Any, **kwargs: Any) -> Any:
